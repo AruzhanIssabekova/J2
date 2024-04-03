@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW2</title>
+</head>
+<body>
+<script>
+function Comp() {
+    const ch = ['s', 'p', 'r', 'l', 'o'];
+    const i = Math.floor(Math.random() * 5);
+    return ch[i];
+}
+
+function User() {
+    let ch = prompt("Выберите: [s] - scissors, [p] - paper, [r] - rock, [l] - lizard, [o] – spock");
+    return ch;
+}
+
+function schet(user, comp) {
+    if (user === comp) {
+        return 'ничья';
+    } else if ((user === 's' && (comp === 'p' || comp === 'l')) ||
+               (user === 'p' && (comp === 'r' || comp === 'o')) ||
+               (user === 'r' && (comp === 's' || comp === 'l')) ||
+               (user === 'l' && (comp === 'p' || comp === 'o')) ||
+               (user === 'o' && (comp === 'r' || comp === 's'))) {
+        return 'игрок';
+    } else {
+        return 'комп';
+    }
+}
+
+function game() {
+    let userScore = 0;
+    let computerScore = 0;
+
+    while (true) {
+        const user = User();
+        const comp = Comp();
+        const win = schet(user, comp);
+
+        if (win === 'игрок') {
+            userScore++;
+            alert(`Вы выиграли!`);
+        } else if (win === 'комп') {
+            computerScore++;
+            alert(`Вы проиграли :(`);
+        } else {
+            alert(`Ничья!`);
+        }
+
+        alert(`Счет: Вы - ${userScore}, Компьютер - ${computerScore}.`);
+        const again = confirm("Еще раз?");
+        if (!again) {
+            break;
+        }
+    }
+}
+
+game();
+</script>
+</body>
+</html>
